@@ -1,0 +1,21 @@
+{
+    "name": "Persist-BOF",
+    "description": "Persistence  BOFs",
+    "extensions": [
+        {
+            "type": "command",
+            "agents": ["beacon"],
+
+            "command": "persistask",
+            "description": "Executes persistence creating a scheduled task ",
+            "message": "BOF implementation: persistask",
+            "example": "persistask add MyTaskName \"C:\\Windows\\System32\\notepad.exe\"",
+            "args": [
+                "STRING <action> (add|remove)",
+                "STRING <task_name> (name of scheduled task)",
+                "STRING <command> (command to run; required for 'add' use \"\" for remove)"
+            ],
+            "exec": "execute bof $EXT_DIR()/persistask.$ARCH().o $PACK_BOF(CSTR {action}, CSTR {task_name}, CSTR {command})"
+        }
+    ]
+}
